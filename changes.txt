@@ -1,0 +1,52 @@
+﻿ALTER TABLE `filterdata`.`users` ADD COLUMN `Name` VARCHAR(50) NULL  AFTER `Role` , ADD COLUMN `EmailId` VARCHAR(45) NULL  AFTER `Name` , ADD COLUMN `Mobile` VARCHAR(45) NULL  AFTER `EmailId` , ADD COLUMN `CreatedOn` DATETIME NULL  AFTER `Mobile` ;
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ALTER TABLE `filterdata`.`mergetb` ADD COLUMN `CreatedBy` INT NULL  AFTER `No_of_Forms` , ADD COLUMN `CreatedOn` DATETIME NULL  AFTER `CreatedBy` ;
+
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ALTER TABLE `filterdata`.`lista` ADD COLUMN `ListName` VARCHAR(45) NULL  AFTER `No_of_Forms` ;
+ ALTER TABLE `filterdata`.`mergetb` ADD COLUMN `ListName` VARCHAR(45) NULL  AFTER `CreatedOn` ;
+
+ ------------------------------------------------------------------------------------------------------------
+
+ALTER TABLE `filterdata`.`mergetb` ADD COLUMN `SetNumber` INT NOT NULL  AFTER `ListName` ;
+
+------------------------------------------------------------------------------------------------------------------
+28-02-2023
+ALTER TABLE `filterdata`.`users` ADD COLUMN `ListAccess` VARCHAR(50) NULL  AFTER `CreatedOn` ;
+
+Set ListAccess for admin to All---------------------------------------------------------------------------------------------------------------------
+12-03-2023
+ALTER TABLE `filterdata`.`mergetb` CHANGE COLUMN `SetNumber` `FormNo` INT(11) NOT NULL  ;
+ALTER TABLE `filterdata`.`mergetb` ADD COLUMN `SetNo` INT NULL  AFTER `FormNo` ;
+------------------------------------------------------------------------------------------------------------------
+25-03-2023
+ALTER TABLE `filterdata`.`mergetb` ADD COLUMN `SetNoCreatedBy` INT NULL  AFTER `SetNo` , ADD COLUMN `SetNoCreatedOn` DATETIME NULL  AFTER `SetNoCreatedBy` ;
+-----------------------------------------------------------------------------------------------------------------------
+13-04-2023
+
+ALTER TABLE `filterdata`.`lista` ADD COLUMN `IsDeleted` TINYINT(1) NULL DEFAULT 0  AFTER `ListName` ;
+ALTER TABLE `filterdata`.`listb` ADD COLUMN `IsDeleted` TINYINT(1) NULL DEFAULT 0  AFTER `aadhaar_card` ;
+------------------------------------------------------------------------------------------------------------------------
+02-05-2023
+delimiter $$
+
+CREATE TABLE `listb_dummy` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `relation` varchar(50) DEFAULT NULL,
+  `relation_name` varchar(50) DEFAULT NULL,
+  `address` varchar(1000) DEFAULT NULL,
+  `district` varchar(50) DEFAULT NULL,
+  `state` varchar(50) DEFAULT NULL,
+  `phone` varchar(50) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `aadhaar_card` bigint(20) DEFAULT NULL,
+  `IsDeleted` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`Id`),
+  KEY `AadharCard` (`aadhaar_card`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1$$
+----------------------------------------------------------------------------------------------------------------------------
+01-09-2023
+ALTER TABLE `mergetb` ADD COLUMN `relation` VARCHAR(45) NULL  AFTER `name` , ADD COLUMN `relation_name` VARCHAR(45) NULL  AFTER `relation` ;
